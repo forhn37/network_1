@@ -18,10 +18,11 @@ const server = http.createServer((req, res) => {
       if(err) {
         serverErrorLog();
       }
+      // 타입에 상관업이 라우팅 되기는 합니다. 알려주는 형식일뿐
       res.writeHead(200, {'Content-Type':'text/html'});
       res.end(data);
     });
-  } else if (req.url === 'style.css' && req.method === 'GET') {
+  } else if (req.url === '/style.css' && req.method === 'GET') {
     fs.readFile('style.css', 'utf-8', (err, data) => {
       if(err) {
         serverErrorLog();
@@ -29,7 +30,7 @@ const server = http.createServer((req, res) => {
       res.writeHead(200, {'Content-Type': 'text/css'});
       res.end(data);
     });
-  } else if (req.url === 'index.js' && req.method === 'GET') {
+  } else if (req.url === '/index.js' && req.method === 'GET') {
     fs.readFile('index.js', 'utf-8', (err, data) => {
       if(err) {
         serverErrorLog();
@@ -38,7 +39,7 @@ const server = http.createServer((req, res) => {
       res.end(data);
     });
   } else {
-    res.writeHead(404);
+    res.writeHead();
     res.end('Not Found');
   }
 });
